@@ -11,7 +11,6 @@ public class AnimationHandler : MonoBehaviour
     private static readonly int MoveY = Animator.StringToHash("MoveY");
 
     protected Animator animator;
-    private int prevDir = 0;    // 최근 방향
 
     private void Awake()
     {
