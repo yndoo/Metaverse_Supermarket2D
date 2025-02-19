@@ -11,12 +11,13 @@ public class MissionManager : MonoBehaviour
 
     public static MissionManager instance;
 
-    private UIManager uiManager;
     private bool hasMission = false;
     private InteractType curZone;
     private float boxWeight;
 
+    private UIManager uiManager;
     private ResourceController resourceController;
+    private AnimationHandler animationHandler;
 
     private void Awake()
     {
@@ -32,8 +33,12 @@ public class MissionManager : MonoBehaviour
         }
 
         resourceController = FindObjectOfType<ResourceController>();
+        animationHandler = FindObjectOfType<AnimationHandler>();
     }
-
+    public void AnimHandlerInit(AnimationHandler ah)
+    {
+        animationHandler = ah;
+    }
     public void ResourceInit(ResourceController rc)
     {
         resourceController = rc;
@@ -78,6 +83,7 @@ public class MissionManager : MonoBehaviour
                 boxWeight = Random.Range(0f, 4f);
                 resourceController.MoveSpeed -= boxWeight;
                 // 상자 들고있게 변경
+                animationHandler.SwitchHolding(true);
                 // 내려둘 곳 표시
                 break;
             case InteractType.MiniGame:
@@ -92,8 +98,7 @@ public class MissionManager : MonoBehaviour
     public void CompleteMission()
     {
         hasMission = false;
-        Debug.Log("미션 완료");
-
+        animationHandler.SwitchHolding(false);
         // 미션 완료 보상
         resourceController.MoveSpeed += boxWeight;
         int rewardCoin = (int)(Random.Range(0, boxWeight) * 10);

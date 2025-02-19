@@ -6,9 +6,9 @@ public class AnimationHandler : MonoBehaviour
 {
     // 애니메이션 키값
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
-    //private static readonly int LastDirection = Animator.StringToHash("LastDirection"); // 마지막 방향 (이동방향아님)
     private static readonly int MoveX = Animator.StringToHash("MoveX");
     private static readonly int MoveY = Animator.StringToHash("MoveY");
+    private static readonly int IsHolding = Animator.StringToHash("IsHolding");
 
     protected Animator animator;
 
@@ -16,7 +16,14 @@ public class AnimationHandler : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
     }
-
+    private void Start()
+    {
+        MissionManager.instance.AnimHandlerInit(this);
+    }
+    public void SwitchHolding(bool on)
+    {
+        animator.SetBool(IsHolding, on);
+    }
     public void Move(Vector2 movement)
     {
         // 움직임

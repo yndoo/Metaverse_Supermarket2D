@@ -27,8 +27,6 @@ public class MiniGameSystem : MonoBehaviour
     private float curTime = 0f;
     private bool isRunning = false;
 
-    private float uiTime = 2f;
-
     private void Awake()
     {
         instance = this;
