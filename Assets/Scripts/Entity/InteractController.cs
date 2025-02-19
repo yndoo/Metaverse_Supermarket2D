@@ -32,9 +32,10 @@ public class InteractZone : MonoBehaviour
             switch(interactType)
             {
                 case InteractType.BoxMission:
+                case InteractType.MiniGame:
                     if (!missionManager.DoingMission())
                     {
-                        missionManager.ShowMissionDesc();
+                        missionManager.ShowMissionDesc(interactType);
                     }
                     break;
                 case InteractType.MissionComplete:
@@ -43,9 +44,6 @@ public class InteractZone : MonoBehaviour
                     {
                         missionManager.CompleteMission();
                     }
-                    break;
-                case InteractType.MiniGame:
-
                     break;
                 default:
                     break;
@@ -62,6 +60,7 @@ public class InteractZone : MonoBehaviour
             switch (interactType)
             {
                 case InteractType.BoxMission:
+                case InteractType.MiniGame:
                     missionManager.OffMissionUI();
                     break;
                 default:
