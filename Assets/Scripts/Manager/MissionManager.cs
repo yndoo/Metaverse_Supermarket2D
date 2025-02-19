@@ -116,7 +116,6 @@ public class MissionManager : MonoBehaviour
         if (randomBox == null)
         {
             randomBox = FindObjectOfType<RandomFood>(true);
-            //randomBox.gameObject.SetActive(true);
         }
         randomBox.RandomOn();
         // 내려둘 곳 표시
