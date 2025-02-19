@@ -22,6 +22,7 @@ public class ResourceController : MonoBehaviour
 
     private void Start()
     {
+        transform.position = GameManager.Instance.LastPosition;
         ChangeCoin(gameManager.PlayerCoin);
     }
 

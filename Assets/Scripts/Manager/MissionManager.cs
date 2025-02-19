@@ -65,7 +65,7 @@ public class MissionManager : MonoBehaviour
                 // 내려둘 곳 표시
                 break;
             case InteractType.MiniGame:
-                // 미니게임 시작
+                // 미니게임 시작 
                 SceneManager.LoadScene("MiniGameScene");
                 break;
             default:

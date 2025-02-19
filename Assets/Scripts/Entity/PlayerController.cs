@@ -39,9 +39,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("obstacle"))
+        if(MiniGameMode && collision.gameObject.CompareTag("obstacle"))
         {
-            Debug.Log("»ç¸Á");
             MiniGameSystem.instance.OffLifeUI();
         }
     }
@@ -61,6 +60,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        GameManager.Instance.LastPosition = transform.position;
         MissionManager.instance.MissionStart();
     }
 }
