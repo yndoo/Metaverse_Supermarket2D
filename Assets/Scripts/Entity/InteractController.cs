@@ -36,14 +36,13 @@ public class InteractZone : MonoBehaviour
                     if (!missionManager.DoingMission())
                     {
                         missionManager.ShowMissionDesc(interactType);
-                        missionManager.CanGetMission = true;
                     }
                     break;
                 case InteractType.MissionComplete:
                     // 필요하다면 미션 조건 확인
                     if (missionManager.DoingMission())
                     {
-                        missionManager.CompleteMission();
+                        missionManager.BoxMissionComplete();
                     }
                     break;
                 default:

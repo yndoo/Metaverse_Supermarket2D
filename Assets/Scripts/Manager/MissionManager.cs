@@ -19,7 +19,7 @@ public class MissionManager : MonoBehaviour
     private UIManager uiManager;
     private ResourceController resourceController;
     private AnimationHandler animationHandler;
-
+    private RandomFood randomBox;
     private void Awake()
     {
         if (instance == null)
@@ -80,13 +80,7 @@ public class MissionManager : MonoBehaviour
         switch(curZone)
         {
             case InteractType.BoxMission:
-                hasMission = true;
-                // 상자 무게에 따라 이동 속도 감소
-                boxWeight = Random.Range(0f, 4f);
-                resourceController.MoveSpeed -= boxWeight;
-                // 상자 들고있게 변경
-                animationHandler.SwitchHolding(true);
-                // 내려둘 곳 표시
+                BoxMissionStart();
                 break;
             case InteractType.MiniGame:
                 // 미니게임 시작 
@@ -96,15 +90,6 @@ public class MissionManager : MonoBehaviour
                 break;
         }
 
-    }
-    public void CompleteMission()
-    {
-        hasMission = false;
-        animationHandler.SwitchHolding(false);
-        // 미션 완료 보상
-        resourceController.MoveSpeed += boxWeight;
-        int rewardCoin = (int)(Random.Range(0, boxWeight) * 10);
-        resourceController.AddCoin(rewardCoin);
     }
     private void ShowGetMissionUI(string msg)
     {
@@ -117,4 +102,36 @@ public class MissionManager : MonoBehaviour
     }
     #endregion
 
+    /// <summary>
+    /// 창고 물건 진열하는 미션 시작 행동 ('박스미션' 으로 통칭)
+    /// </summary>
+    private void BoxMissionStart()
+    {
+        hasMission = true;
+        // 상자 무게에 따라 이동 속도 감소
+        boxWeight = Random.Range(0f, 4f);
+        resourceController.MoveSpeed -= boxWeight;
+        // 상자 들고있게 변경
+        animationHandler.SwitchHolding(true);
+        if (randomBox == null)
+        {
+            randomBox = FindObjectOfType<RandomFood>(true);
+            //randomBox.gameObject.SetActive(true);
+        }
+        randomBox.RandomOn();
+        // 내려둘 곳 표시
+    }
+    /// <summary>
+    /// 박스미션 완료 행동
+    /// </summary>
+    public void BoxMissionComplete()
+    {
+        hasMission = false;
+        animationHandler.SwitchHolding(false);
+        randomBox.gameObject.SetActive(false);
+        // 미션 완료 보상
+        resourceController.MoveSpeed += boxWeight;
+        int rewardCoin = (int)(Random.Range(0, boxWeight) * 10);
+        resourceController.AddCoin(rewardCoin);
+    }
 }
