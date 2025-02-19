@@ -10,11 +10,15 @@ public class MissionManager : MonoBehaviour
     [SerializeField] private GameObject MissionMessageUI;
 
     public static MissionManager instance;
+
     public bool CanGetMission { get; set; }
 
     private bool hasMission = false;
     private InteractType curZone;
     private float boxWeight;
+
+    public InteractController MissionZone;
+    public InteractController CompleteZone;
 
     private UIManager uiManager;
     private ResourceController resourceController;
@@ -119,6 +123,8 @@ public class MissionManager : MonoBehaviour
         }
         randomBox.RandomOn();
         // 내려둘 곳 표시
+        CompleteZone.ZoneParticle.Play();
+        MissionZone.ZoneParticle.Stop();
     }
     /// <summary>
     /// 박스미션 완료 행동
@@ -132,5 +138,8 @@ public class MissionManager : MonoBehaviour
         resourceController.MoveSpeed += boxWeight;
         int rewardCoin = (int)(Random.Range(0, boxWeight) * 10);
         resourceController.AddCoin(rewardCoin);
+        // 표시
+        CompleteZone.ZoneParticle.Stop();
+        MissionZone.ZoneParticle.Play();
     }
 }

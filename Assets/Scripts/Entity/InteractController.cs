@@ -9,18 +9,35 @@ public enum InteractType
     MiniGame,
 }
 
-public class InteractZone : MonoBehaviour
+public class InteractController : MonoBehaviour
 {
     // LayerMask로 여러 Layer 확인 가능!!!
     [SerializeField] private LayerMask canInteractTargetLayers;
 
+    public ParticleSystem ZoneParticle;
     public InteractType interactType;
 
     MissionManager missionManager;
 
     private void Start()
     {
-        missionManager = FindObjectOfType<MissionManager>();    
+        missionManager = FindObjectOfType<MissionManager>();
+        ZoneParticle = GetComponentInChildren<ParticleSystem>();
+        // 인터랙션 존 표시 
+        switch (interactType)
+        { 
+            case InteractType.BoxMission:
+                missionManager.MissionZone = this;
+                ZoneParticle.Play();
+                break;
+                case InteractType.MissionComplete:
+                missionManager.CompleteZone = this;
+                ZoneParticle.Stop();
+                break;
+            default:
+                break;
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
