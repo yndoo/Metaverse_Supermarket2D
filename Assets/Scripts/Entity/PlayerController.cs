@@ -54,6 +54,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnInteraction()
     {
+        if (MiniGameMode)
+        {
+            MiniGameSystem.instance.MiniGameExit();
+            MiniGameMode = false;
+            return;
+        }
+
         MissionManager.instance.MissionStart();
     }
 }

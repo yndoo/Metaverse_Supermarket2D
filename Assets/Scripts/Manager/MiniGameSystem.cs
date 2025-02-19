@@ -4,12 +4,14 @@ using System.Threading;
 using TMPro;
 using UnityEditor.U2D.Aseprite;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MiniGameSystem : MonoBehaviour
 {
     public static MiniGameSystem instance;
     public GameObject LifeUI;
     public GameObject RewardUI;
+    public GameObject ExitMessageUI;
     public TextMeshProUGUI TimeTxt;
 
     private TextMeshProUGUI TimeResultTxt;
@@ -65,6 +67,7 @@ public class MiniGameSystem : MonoBehaviour
             RewardUI.SetActive(true);
             Invoke("TimeResultActive", 0.8f);
             Invoke("CoinResultActive", 1.6f);
+            Invoke("ExitMessageActive", 2.4f);
         }
     }
 
@@ -76,8 +79,12 @@ public class MiniGameSystem : MonoBehaviour
     {
         CoinResultTxt.gameObject.SetActive(true);
     }
-    private void MiniGameExit()
+    private void ExitMessageActive()
     {
-
+        ExitMessageUI.SetActive(true);
+    }
+    public void MiniGameExit()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 }

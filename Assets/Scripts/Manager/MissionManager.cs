@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class MissionManager : MonoBehaviour
@@ -65,6 +66,7 @@ public class MissionManager : MonoBehaviour
                 break;
             case InteractType.MiniGame:
                 // 미니게임 시작
+                SceneManager.LoadScene("MiniGameScene");
                 break;
             default:
                 break;
