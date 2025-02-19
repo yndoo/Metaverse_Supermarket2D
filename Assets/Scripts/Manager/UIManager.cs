@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-        gameUI = GetComponentInChildren<GameUI>();
+        gameUI = FindObjectOfType<GameUI>();
         gameUI.Init(this);
 
         ChangeState(UIState.GameUI);

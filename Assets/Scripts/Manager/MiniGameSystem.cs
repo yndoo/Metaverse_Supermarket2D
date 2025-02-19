@@ -14,12 +14,14 @@ public class MiniGameSystem : MonoBehaviour
     public GameObject MinigameMessageUI;
     public TextMeshProUGUI TimeTxt;
 
-    public bool IsRunning {  get; private set; }
+    public bool IsRunning {  get => isRunning; private set { IsRunning = value; } }
 
+    private TextMeshProUGUI BestRecordTxt;
     private TextMeshProUGUI TimeResultTxt;
     private TextMeshProUGUI CoinResultTxt;
 
     private const int LifeCount = 3;
+    private const string bestRecordKey = "BestScore";
 
     private int index = 2;
     private float curTime = 0f;
@@ -43,6 +45,7 @@ public class MiniGameSystem : MonoBehaviour
         TextMeshProUGUI[] rewards = RewardUI.GetComponentsInChildren<TextMeshProUGUI>(true);
         TimeResultTxt = rewards[0];
         CoinResultTxt = rewards[1];
+        BestRecordTxt = rewards[2];
     }
 
     private void Update()
@@ -67,11 +70,23 @@ public class MiniGameSystem : MonoBehaviour
         {
             // 게임 끝
             isRunning = false;
+            // 기록 계산
+            float best = PlayerPrefs.GetFloat(bestRecordKey);
+            if(best < curTime)
+            {
+                PlayerPrefs.SetFloat(bestRecordKey, curTime);
+                best = curTime;
+            }
+            BestRecordTxt.text = $"Best Record {best.ToString("N2")}";
             TimeResultTxt.text = curTime.ToString("N2");
 
+            // 보상 계산
             float coinP = Random.Range(5f, 100f);
-            CoinResultTxt.text = Mathf.Ceil((curTime * coinP)).ToString();
+            int rewardCoin = (int)Mathf.Ceil(curTime * coinP);
+            GameManager.Instance.PlayerCoin += rewardCoin;
+            CoinResultTxt.text = rewardCoin.ToString();
             
+            // 보상UI 활성화
             RewardUI.SetActive(true);
             Invoke("TimeResultActive", 1f);
             Invoke("CoinResultActive", 2f);
@@ -81,6 +96,7 @@ public class MiniGameSystem : MonoBehaviour
 
     private void TimeResultActive()
     {
+        
         TimeResultTxt.gameObject.SetActive(true);
     }
     private void CoinResultActive()
@@ -98,6 +114,7 @@ public class MiniGameSystem : MonoBehaviour
     }
     public void MiniGameExit()
     {
+        isRunning = false;
         SceneManager.LoadScene("MainScene");
     }
 }

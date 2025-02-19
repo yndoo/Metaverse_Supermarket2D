@@ -34,7 +34,7 @@ public class MissionManager : MonoBehaviour
         return hasMission;
     }
 
-    #region 미션 UI
+    #region 미션 UI 관련
     public void ShowMissionDesc(InteractType type)
     {
         if (hasMission) return; // 미션을 진행 중이면 X
@@ -48,7 +48,7 @@ public class MissionManager : MonoBehaviour
                 msg = "물건을 진열해야 합니다.\n도전하시겠습니까?";
                 break;
             case InteractType.MiniGame:
-                msg = "진상 손님으로부터 도망가고 싶습니다.\n잠시 냉장 창고에 들어가시겠습니까?";
+                msg = "진상 손님으로부터 도망갈 수 있습니다.";
                 break;
         }
         ShowGetMissionUI(msg);
@@ -78,7 +78,7 @@ public class MissionManager : MonoBehaviour
         hasMission = false;
         Debug.Log("미션 완료");
 
-        // 보상, 켰던 UI Off 등.
+        // TO DO : 보상, 켰던 UI Off 등 미션 완료 시 할 일들
     }
     private void ShowGetMissionUI(string msg)
     {
