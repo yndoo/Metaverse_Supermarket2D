@@ -79,6 +79,7 @@ public class MissionManager : MonoBehaviour
     /// </summary>
     public void MissionStart()
     {
+        if (hasMission) return; // 미션을 진행 중이면 X
         OffMissionUI();
 
         switch(curZone)
