@@ -8,17 +8,18 @@ public class PlayerController : MonoBehaviour
     // LayerMask로 여러 Layer 확인 가능!!!
     [SerializeField] private LayerMask canInteractLayerMask;
     public bool MiniGameMode = false;
-    public float MoveSpeed = 5f;
 
     private Vector2 movementDirection;
 
     private Rigidbody2D playerRigidbody;
     private AnimationHandler animationHandler;
+    private ResourceController resourceController;
 
     private void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
-        animationHandler = GetComponent<AnimationHandler>();  
+        animationHandler = GetComponent<AnimationHandler>();
+        resourceController = GetComponent<ResourceController>();
     }
     private void FixedUpdate()
     {
@@ -26,12 +27,12 @@ public class PlayerController : MonoBehaviour
     }
     private void Movement(Vector2 direction)
     {
-        direction = direction * MoveSpeed;
         if (MiniGameMode)
         {
-            playerRigidbody.velocity = direction + Vector2.right * MoveSpeed; // 미니게임에서는 오른쪽으로 계속 가면서 움직임
+            playerRigidbody.velocity = direction * 5f + Vector2.right * 5f; // 미니게임에서는 오른쪽으로 계속 가면서 움직임
             return;
         }
+        direction = direction * resourceController.MoveSpeed;
 
         playerRigidbody.velocity = direction;
         animationHandler.Move(direction);

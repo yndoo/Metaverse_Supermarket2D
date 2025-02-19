@@ -2222,6 +2222,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InterationZone_Finish
       objectReference: {fileID: 0}
+    - target: {fileID: 2670021471727407117, guid: 7bde651f576e91640ab95b25a6e54438, type: 3}
+      propertyPath: m_TagString
+      value: MissionFinish
+      objectReference: {fileID: 0}
     - target: {fileID: 4274924731146781133, guid: 7bde651f576e91640ab95b25a6e54438, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.626056
@@ -2273,6 +2277,22 @@ PrefabInstance:
     - target: {fileID: 6016559979569068519, guid: 7bde651f576e91640ab95b25a6e54438, type: 3}
       propertyPath: interactType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8276510313308773929, guid: 7bde651f576e91640ab95b25a6e54438, type: 3}
+      propertyPath: m_Size.x
+      value: 0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 8276510313308773929, guid: 7bde651f576e91640ab95b25a6e54438, type: 3}
+      propertyPath: m_Size.y
+      value: 0.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 8276510313308773929, guid: 7bde651f576e91640ab95b25a6e54438, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 8276510313308773929, guid: 7bde651f576e91640ab95b25a6e54438, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4676,7 +4696,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   MiniGameMode: 0
-  MoveSpeed: 4
 --- !u!114 &879470743
 MonoBehaviour:
   m_ObjectHideFlags: 0

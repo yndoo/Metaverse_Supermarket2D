@@ -14,6 +14,9 @@ public class MissionManager : MonoBehaviour
     private UIManager uiManager;
     private bool hasMission = false;
     private InteractType curZone;
+    private float boxWeight;
+
+    private ResourceController resourceController;
 
     private void Awake()
     {
@@ -27,6 +30,13 @@ public class MissionManager : MonoBehaviour
         {
             uiManager = FindObjectOfType<UIManager>();
         }
+
+        resourceController = FindObjectOfType<ResourceController>();
+    }
+
+    public void ResourceInit(ResourceController rc)
+    {
+        resourceController = rc;
     }
 
     public bool DoingMission()
@@ -53,6 +63,9 @@ public class MissionManager : MonoBehaviour
         }
         ShowGetMissionUI(msg);
     }
+    /// <summary>
+    /// 미션 수락 시 실행
+    /// </summary>
     public void MissionStart()
     {
         OffMissionUI();
@@ -61,6 +74,9 @@ public class MissionManager : MonoBehaviour
         {
             case InteractType.BoxMission:
                 hasMission = true;
+                // 상자 무게에 따라 이동 속도 감소
+                boxWeight = Random.Range(0f, 4f);
+                resourceController.MoveSpeed -= boxWeight;
                 // 상자 들고있게 변경
                 // 내려둘 곳 표시
                 break;
@@ -78,7 +94,10 @@ public class MissionManager : MonoBehaviour
         hasMission = false;
         Debug.Log("미션 완료");
 
-        // TO DO : 보상, 켰던 UI Off 등 미션 완료 시 할 일들
+        // 미션 완료 보상
+        resourceController.MoveSpeed += boxWeight;
+        int rewardCoin = (int)(Random.Range(0, boxWeight) * 10);
+        resourceController.AddCoin(rewardCoin);
     }
     private void ShowGetMissionUI(string msg)
     {
