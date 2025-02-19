@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("obstacle"))
         {
             Debug.Log("»ç¸Á");
+            MiniGameSystem.instance.OffLifeUI();
         }
     }
 
