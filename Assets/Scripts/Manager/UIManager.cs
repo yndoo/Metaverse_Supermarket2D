@@ -16,7 +16,11 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if(Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
 
         gameUI = GetComponentInChildren<GameUI>();
         gameUI.Init(this);

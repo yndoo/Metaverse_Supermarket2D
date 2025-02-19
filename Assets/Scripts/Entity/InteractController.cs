@@ -44,6 +44,9 @@ public class InteractZone : MonoBehaviour
                         missionManager.CompleteMission();
                     }
                     break;
+                case InteractType.MiniGame:
+
+                    break;
                 default:
                     break;
             }

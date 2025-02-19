@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MissionManager : MonoBehaviour
 {
-    [SerializeField] private GameObject GetMissionUI;
+    [SerializeField] private GameObject MissionMessageUI;
 
     public static MissionManager instance;
 
@@ -14,9 +14,16 @@ public class MissionManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
 
-        uiManager = FindObjectOfType<UIManager>();
+        if(uiManager == null)
+        {
+            uiManager = FindObjectOfType<UIManager>();
+        }
     }
 
     public bool DoingMission()
@@ -24,14 +31,12 @@ public class MissionManager : MonoBehaviour
         return hasMission;
     }
 
-    // 미션 보여주기
+    #region 상자미션 UI
     public void ShowMissionDesc()
     {
         if (hasMission) return; // 이미 진행 중이면 X
         ShowGetMissionUI();
     }
-
-    // 미션 주기
     public void MissionStart()
     {
         hasMission = true;
@@ -41,22 +46,20 @@ public class MissionManager : MonoBehaviour
 
         // 내려둘 곳 표시
     }
-
-    // 미션 완료
     public void CompleteMission()
     {
         hasMission = false;
         Debug.Log("미션 완료");
         // 보상, 켰던 UI Off 등.
     }
-
     private void ShowGetMissionUI()
     {
-        GetMissionUI.SetActive(true);
+        MissionMessageUI.SetActive(true);
     }
-
     public void OffMissionUI()
     {
-        GetMissionUI.SetActive(false);
+        MissionMessageUI.SetActive(false);
     }
+    #endregion
+
 }
