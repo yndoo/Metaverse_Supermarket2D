@@ -7,9 +7,22 @@ public class BgLooper : MonoBehaviour
     private int numBgCount = 4;
     private const float widthOfBgObject = 18f;
 
+    private int obstacleCount = 0;
+    private Vector3 lastObstaclePos;
+
+    private void Awake()
+    {
+        lastObstaclePos = new Vector3(15, 0, 0);
+    }
     void Start()
     {
-        
+        Obstacle[] obstacles = GameObject.FindObjectsOfType<Obstacle>();
+        obstacleCount = obstacles.Length;
+
+        for(int i = 0; i < obstacleCount; i++)
+        {
+            lastObstaclePos = obstacles[i].SetRandomPosition(lastObstaclePos);
+        }
     }
 
     void Update()
@@ -32,7 +45,11 @@ public class BgLooper : MonoBehaviour
         // Àå¾Ö¹° looper
         if (collision.CompareTag("obstacle"))
         {
-
+            Obstacle obs = collision.GetComponent<Obstacle>();
+            if (obs != null)
+            {
+                lastObstaclePos =  obs.SetRandomPosition(lastObstaclePos);
+            }
         }
     }
 }

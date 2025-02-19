@@ -37,9 +37,12 @@ public class PlayerController : MonoBehaviour
         animationHandler.Move(direction);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if(collision.gameObject.CompareTag("obstacle"))
+        {
+            Debug.Log("»ç¸Á");
+        }
     }
 
     private void OnMove(InputValue inputValue)
