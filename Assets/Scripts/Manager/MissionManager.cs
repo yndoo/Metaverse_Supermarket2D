@@ -19,6 +19,11 @@ public class MissionManager : MonoBehaviour
         uiManager = FindObjectOfType<UIManager>();
     }
 
+    public bool DoingMission()
+    {
+        return hasMission;
+    }
+
     // 미션 보여주기
     public void ShowMissionDesc()
     {
@@ -41,7 +46,7 @@ public class MissionManager : MonoBehaviour
     public void CompleteMission()
     {
         hasMission = false;
-
+        Debug.Log("미션 완료");
         // 보상, 켰던 UI Off 등.
     }
 
