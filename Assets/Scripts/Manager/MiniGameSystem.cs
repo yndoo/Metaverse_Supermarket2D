@@ -11,8 +11,10 @@ public class MiniGameSystem : MonoBehaviour
     public static MiniGameSystem instance;
     public GameObject LifeUI;
     public GameObject RewardUI;
-    public GameObject ExitMessageUI;
+    public GameObject MinigameMessageUI;
     public TextMeshProUGUI TimeTxt;
+
+    public bool IsRunning {  get; private set; }
 
     private TextMeshProUGUI TimeResultTxt;
     private TextMeshProUGUI CoinResultTxt;
@@ -31,6 +33,10 @@ public class MiniGameSystem : MonoBehaviour
     }
     private void Start()
     {
+        MinigameMessageUI.GetComponentInChildren<TextMeshProUGUI>(true).text = "오래 살아남으세요.";
+        MinigameMessageUI.SetActive(true);
+        Invoke("MsgOff", 3f);
+
         isRunning = true;
         index = LifeCount - 1;
 
@@ -53,6 +59,8 @@ public class MiniGameSystem : MonoBehaviour
     /// </summary>
     public void OffLifeUI()
     {
+        if (!isRunning) return;
+
         LifeUI.transform.GetChild(index--).gameObject.SetActive(false);
 
         if(index < 0)
@@ -65,9 +73,9 @@ public class MiniGameSystem : MonoBehaviour
             CoinResultTxt.text = Mathf.Ceil((curTime * coinP)).ToString();
             
             RewardUI.SetActive(true);
-            Invoke("TimeResultActive", 0.8f);
-            Invoke("CoinResultActive", 1.6f);
-            Invoke("ExitMessageActive", 2.4f);
+            Invoke("TimeResultActive", 1f);
+            Invoke("CoinResultActive", 2f);
+            Invoke("ExitMessageActive", 3f);
         }
     }
 
@@ -81,7 +89,12 @@ public class MiniGameSystem : MonoBehaviour
     }
     private void ExitMessageActive()
     {
-        ExitMessageUI.SetActive(true);
+        MinigameMessageUI.GetComponentInChildren<TextMeshProUGUI>(true).text = "Press \'E\'";
+        MinigameMessageUI.SetActive(true);
+    }
+    private void MsgOff()
+    {
+        MinigameMessageUI.SetActive(false);
     }
     public void MiniGameExit()
     {

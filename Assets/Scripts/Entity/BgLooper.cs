@@ -25,13 +25,10 @@ public class BgLooper : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (MiniGameSystem.instance.IsRunning == false) return;
+
         // ¹è°æ looper
         if(collision.CompareTag("background"))
         {
