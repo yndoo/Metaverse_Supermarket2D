@@ -2,17 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum UIState
+{
+    GameUI
+}
+
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static UIManager Instance;
+
+    GameUI gameUI;
+    public UIState currentState;
+
+    private void Awake()
     {
-        
+        Instance = this;
+
+        gameUI = GetComponentInChildren<GameUI>();
+        gameUI.Init(this);
+
+        ChangeState(UIState.GameUI);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeState(UIState state)
     {
-        
+        currentState = state;
+        gameUI.SetActive(currentState);
     }
 }

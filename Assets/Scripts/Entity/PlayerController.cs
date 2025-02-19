@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     // LayerMask로 여러 Layer 확인 가능!!!
     [SerializeField] private LayerMask canInteractLayerMask;
+    public float MoveSpeed = 5f;
 
     private Vector2 movementDirection;
 
@@ -24,7 +25,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Movement(Vector2 direction)
     {
-        direction = direction * 3;
+        direction = direction * MoveSpeed;
 
         playerRigidbody.velocity = direction;
         animationHandler.Move(direction);
@@ -32,17 +33,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // 상호작용 오브젝트 : canInteractLayerMask에 포함되는 것인지 확인
-        int isInsteract = canInteractLayerMask.value | (1 << collision.gameObject.layer);
-        if (canInteractLayerMask.value == isInsteract)
-        {
-            Debug.Log("상호작용");
-        }
+        
     }
 
     private void OnMove(InputValue inputValue)
     {
         movementDirection = inputValue.Get<Vector2>();
         movementDirection = movementDirection.normalized;
+    }
+
+    private void OnInteraction()
+    {
+        MissionManager.instance.MissionStart();
     }
 }
