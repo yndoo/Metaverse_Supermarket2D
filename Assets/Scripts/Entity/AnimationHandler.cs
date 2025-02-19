@@ -20,7 +20,9 @@ public class AnimationHandler : MonoBehaviour
     public void Move(Vector2 movement)
     {
         // 움직임
-        animator.SetBool(IsMoving, movement.magnitude > 0.5f);
+        bool mag = movement.magnitude > 0.5f;
+        animator.SetBool(IsMoving, mag);
+        if (!mag) return;
 
         // 방향
         Vector2 dir = movement.normalized;
