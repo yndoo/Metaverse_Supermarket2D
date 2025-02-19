@@ -36,6 +36,7 @@ public class InteractZone : MonoBehaviour
                     if (!missionManager.DoingMission())
                     {
                         missionManager.ShowMissionDesc(interactType);
+                        missionManager.CanGetMission = true;
                     }
                     break;
                 case InteractType.MissionComplete:

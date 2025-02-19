@@ -10,6 +10,7 @@ public class MissionManager : MonoBehaviour
     [SerializeField] private GameObject MissionMessageUI;
 
     public static MissionManager instance;
+    public bool CanGetMission { get; set; }
 
     private bool hasMission = false;
     private InteractType curZone;
@@ -54,6 +55,7 @@ public class MissionManager : MonoBehaviour
     {
         if (hasMission) return; // 미션을 진행 중이면 X
 
+        CanGetMission = true;
         curZone = type;
 
         string msg = "";

@@ -61,7 +61,12 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        if(MissionManager.instance.CanGetMission)
+        {
+            MissionManager.instance.MissionStart();
+            return;
+        }
+
         GameManager.Instance.LastPosition = transform.position;
-        MissionManager.instance.MissionStart();
     }
 }
