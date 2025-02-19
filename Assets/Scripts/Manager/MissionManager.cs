@@ -45,10 +45,10 @@ public class MissionManager : MonoBehaviour
         switch(type)
         {
             case InteractType.BoxMission:
-                msg = "Press 'E' to Get Mission";
+                msg = "물건을 진열해야 합니다.\n도전하시겠습니까?";
                 break;
             case InteractType.MiniGame:
-                msg = "Press 'E' to Enter the MiniGame";
+                msg = "진상 손님으로부터 도망가고 싶습니다.\n잠시 냉장 창고에 들어가시겠습니까?";
                 break;
         }
         ShowGetMissionUI(msg);
