@@ -80,7 +80,7 @@ public class MiniGameSystem : MonoBehaviour
             // 보상 계산
             float coinP = Random.Range(5f, 100f);
             int rewardCoin = (int)Mathf.Ceil(curTime * coinP);
-            GameManager.Instance.PlayerCoin += rewardCoin;
+            ResourceManager.Instance.PlayerCoin += rewardCoin;
             CoinResultTxt.text = rewardCoin.ToString();
             
             // 보상UI 활성화

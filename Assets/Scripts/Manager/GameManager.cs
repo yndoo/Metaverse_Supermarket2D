@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public int PlayerCoin { get; set; }
     public Vector3 LastPosition {  get; set; }
 
     ResourceController resourceController;
@@ -25,7 +24,6 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        PlayerCoin = 0;
         LastPosition = Vector3.zero;
     }
 

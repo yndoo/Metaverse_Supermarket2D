@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Resources;
 using TMPro;
 using UnityEngine;
 
@@ -15,7 +16,7 @@ public class ResourceController : MonoBehaviour
     private GameUI gameUI;
     private TextMeshProUGUI coinText;
 
-    private GameManager gameManager;
+    private ResourceManager resourceManager;
     private WorkManager workManager;
 
     private void Awake()
@@ -25,7 +26,7 @@ public class ResourceController : MonoBehaviour
         {
             coinText = gameUI.GetComponentInChildren<TextMeshProUGUI>();
         }
-        gameManager = FindObjectOfType<GameManager>();
+        resourceManager = FindObjectOfType<ResourceManager>();
         workManager = FindObjectOfType<WorkManager>();
         workManager.ResourceInit(this);
     }
@@ -34,19 +35,20 @@ public class ResourceController : MonoBehaviour
     {
         transform.position = GameManager.Instance.LastPosition;
         MoveSpeed = 5f;
-        AddCoin(gameManager.PlayerCoin);
+        AddCoin(resourceManager.PlayerCoin);
     }
 
     public void AddCoin(int amount)
     {
         coin += amount;
-        gameManager.PlayerCoin = coin;
+        resourceManager.PlayerCoin = coin;
         gameUI.UpdateCoin(coin);
     }
 
     public void AddPopular(int amount)
     {
         popular += amount;
+        resourceManager.PlayerPopular = popular;
         gameUI.UpdatePolular(popular);
     }
 }
