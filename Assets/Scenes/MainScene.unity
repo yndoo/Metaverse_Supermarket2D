@@ -15492,7 +15492,7 @@ GameObject:
   - component: {fileID: 1361144836}
   - component: {fileID: 1361144839}
   - component: {fileID: 1361144838}
-  - component: {fileID: 1361144837}
+  - component: {fileID: 1361144840}
   m_Layer: 5
   m_Name: PopularIcon
   m_TagString: Untagged
@@ -15519,27 +15519,6 @@ RectTransform:
   m_AnchoredPosition: {x: -163, y: 0}
   m_SizeDelta: {x: 36, y: 36}
   m_Pivot: {x: 1, y: 0.5}
---- !u!95 &1361144837
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1361144835}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fccb56585276a34478531dd582ed321b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1361144838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15553,14 +15532,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.20736448, g: 1, b: 0.15566039, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1660260929, guid: 106e8365f9e94954f878d5e203795780, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dbdf87b3726cbf94e8eb7509d16de7cb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15578,6 +15557,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1361144835}
   m_CullTransparentMesh: 1
+--- !u!95 &1361144840
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361144835}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 575fd8e6c10e9c64da3710aacbf94f71, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1409056554
 GameObject:
   m_ObjectHideFlags: 0
@@ -22311,6 +22311,7 @@ GameObject:
   - component: {fileID: 1802915973}
   - component: {fileID: 1802915974}
   - component: {fileID: 1802915975}
+  - component: {fileID: 1802915976}
   m_Layer: 6
   m_Name: HeadFood
   m_TagString: Untagged
@@ -22429,6 +22430,27 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f62458f0fc9d6b546a4a6f85d8c3af81, type: 3}
   - {fileID: 21300000, guid: 6807b7ce64446594cb8f4af2900d6f4f, type: 3}
   - {fileID: 21300000, guid: 5d51bb38d556fbb46a70f124fc7d263b, type: 3}
+--- !u!95 &1802915976
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802915972}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9d2322ca69ffcb3438e0c7b70c6cbf39, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1839261807
 GameObject:
   m_ObjectHideFlags: 0
