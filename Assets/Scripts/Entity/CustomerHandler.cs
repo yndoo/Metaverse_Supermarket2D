@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.LowLevel;
 
-
+/// <summary>
+/// 고객 NPC 이벤트 발생 단계
+/// </summary>
 public enum ERequestState
 {
     EnterCustomer,  // 요청 전
@@ -11,19 +14,27 @@ public enum ERequestState
     Delivery,       // 고객에게 전달
     Complete,       // 수행 완료
 }
+
 public class CustomerHandler : MonoBehaviour
 {
     public GameObject RequestPrefab;
 
     public ERequestState CurState { get; set; }
+    public int FoodNum { get; set; }
 
     private GameObject RequestZone;
-    private RandomFood randomFood;
+    private RandomFood customersRandomFood;
 
-    
+
+    AnimationHandler animationHandler;
+
+    private void Awake()
+    {
+        animationHandler = FindObjectOfType<AnimationHandler>();
+        customersRandomFood = GetComponentInChildren<RandomFood>(true);
+    }
     private void Start()
     {
-        randomFood = GetComponentInChildren<RandomFood>(true);
         CurState = ERequestState.EnterCustomer;
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -35,18 +46,22 @@ public class CustomerHandler : MonoBehaviour
             case ERequestState.EnterCustomer:
                 // 요청 띄우기 & 생성 & 상태 변경
                 Debug.Log("고객 입장");
-                randomFood.RandomOn();
+                FoodNum = customersRandomFood.RandomOn();
                 InitRequestZone();
                 CurState = ERequestState.FindFood;
                 break;
             case ERequestState.Delivery:
                 Debug.Log("운반 완료 끝!");
-                randomFood.SpriteColorOn();
                 // 완료
                 CurState = ERequestState.Complete;
+                customersRandomFood.SpriteColorOn();
+                animationHandler.SwitchHolding(false);
+                animationHandler.HeadFoodOff();
+                // 보상
+
+                // 제거
                 Destroy(RequestZone, 1f);
                 Destroy(gameObject, 1f);
-                // 보상
                 break;
             default:
                 break;

@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public Vector3 LastPosition {  get; set; }
 
     ResourceController resourceController;
+    AnimationHandler animationHandler;
 
     // 게임 이벤트 스포너 역할을 해야 함...
     public GameObject CustomerEventPrefab;
@@ -40,5 +41,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("물건 찾았음. 운반 중");
         CustomerEventHandler.CurState = ERequestState.Delivery;
         // 플레이어 IsHolding
+        animationHandler = FindObjectOfType<AnimationHandler>();
+        animationHandler.SwitchHolding(true);
+        animationHandler.HeadFoodOn(CustomerEventHandler.FoodNum);
     }
 }

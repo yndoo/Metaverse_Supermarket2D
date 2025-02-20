@@ -14406,6 +14406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8facae659be9a2d478f3bd6a8dce825c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerFood: {fileID: 1802915975}
 --- !u!50 &879470745
 Rigidbody2D:
   serializedVersion: 4
@@ -22170,7 +22171,7 @@ GameObject:
   - component: {fileID: 1802915974}
   - component: {fileID: 1802915975}
   m_Layer: 6
-  m_Name: Mission
+  m_Name: HeadFood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

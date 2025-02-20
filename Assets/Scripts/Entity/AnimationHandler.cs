@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.LowLevel;
 
 public class AnimationHandler : MonoBehaviour
 {
@@ -10,7 +11,9 @@ public class AnimationHandler : MonoBehaviour
     private static readonly int MoveY = Animator.StringToHash("MoveY");
     private static readonly int IsHolding = Animator.StringToHash("IsHolding");
 
-    protected Animator animator;
+    public RandomFood playerFood; // 플레이어 머리 위 공간
+
+    private Animator animator;
 
     private void Awake()
     {
@@ -23,6 +26,15 @@ public class AnimationHandler : MonoBehaviour
     public void SwitchHolding(bool on)
     {
         animator.SetBool(IsHolding, on);
+    }
+    public void HeadFoodOn(int spriteNum)
+    {
+        playerFood.gameObject.SetActive(true);
+        playerFood.SetSpriteNum(spriteNum);
+    }
+    public void HeadFoodOff()
+    {
+        playerFood.gameObject.SetActive(false);
     }
     public void Move(Vector2 movement)
     {

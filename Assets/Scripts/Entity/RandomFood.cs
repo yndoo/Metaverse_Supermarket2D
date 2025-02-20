@@ -14,11 +14,17 @@ public class RandomFood : MonoBehaviour
         foodRenderer = GetComponent<SpriteRenderer>();
         gameObject.SetActive(false);
     }
-    public void RandomOn()
+    public int RandomOn()
     {
         gameObject.SetActive(true); 
         int idx = Random.Range(0, maxIndex);
         foodRenderer.sprite = sprites[idx];
+        return idx;
+    }
+
+    public void SetSpriteNum(int num)
+    {
+        foodRenderer.sprite = sprites[num];
     }
 
     public void SpriteColorOn()

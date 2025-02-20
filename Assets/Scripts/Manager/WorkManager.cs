@@ -129,6 +129,7 @@ public class WorkManager : MonoBehaviour
         CompleteZone.ZoneParticle.Play();
         BoxMissionZone.ZoneParticle.Stop();
     }
+
     /// <summary>
     /// 박스미션 완료 행동
     /// </summary>
@@ -137,7 +138,7 @@ public class WorkManager : MonoBehaviour
         IsWorking = false;
 
         animationHandler.SwitchHolding(false);
-        randomBox.gameObject.SetActive(false);
+        animationHandler.HeadFoodOff();
         // 미션 완료 보상
         resourceController.MoveSpeed += boxWeight;
         int rewardCoin = (int)(Random.Range(0, boxWeight) * 10);
