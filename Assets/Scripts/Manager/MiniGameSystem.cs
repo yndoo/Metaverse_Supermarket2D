@@ -32,7 +32,7 @@ public class MiniGameSystem : MonoBehaviour
     }
     private void Start()
     {
-        MinigameMessageUI.GetComponentInChildren<TextMeshProUGUI>(true).text = "오래 살아남으세요.";
+        MinigameMessageUI.GetComponentInChildren<TextMeshProUGUI>(true).text = "진상 손님 : 내가 옆동네 똑같은 마트에서 산건데 환불이 왜 안%@$! ...";
         MinigameMessageUI.SetActive(true);
         Invoke("MsgOff", 3f);
 
@@ -81,16 +81,16 @@ public class MiniGameSystem : MonoBehaviour
             TimeResultTxt.text = curTime.ToString("N2");
 
             // 보상 계산
-            float coinP = Random.Range(5f, 100f);
+            float coinP = Random.Range(0.5f, 80f);
             int rewardCoin = (int)Mathf.Ceil(curTime * coinP);
             ResourceManager.Instance.PlayerCoin += rewardCoin;
             CoinResultTxt.text = rewardCoin.ToString();
             
             // 보상UI 활성화
             RewardUI.SetActive(true);
-            Invoke("TimeResultActive", 1f);
-            Invoke("CoinResultActive", 2f);
-            Invoke("ExitMessageActive", 3f);
+            Invoke("TimeResultActive", 0.5f);
+            Invoke("CoinResultActive", 1f);
+            Invoke("ExitMessageActive", 1.5f);
         }
     }
 
@@ -105,7 +105,7 @@ public class MiniGameSystem : MonoBehaviour
     }
     private void ExitMessageActive()
     {
-        MinigameMessageUI.GetComponentInChildren<TextMeshProUGUI>(true).text = "Press \'E\'";
+        MinigameMessageUI.GetComponentInChildren<TextMeshProUGUI>(true).text = "마트로 돌아갑니다...";
         MinigameMessageUI.SetActive(true);
     }
     private void MsgOff()

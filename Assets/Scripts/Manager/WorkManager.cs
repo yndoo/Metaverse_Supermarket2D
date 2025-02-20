@@ -62,10 +62,10 @@ public class WorkManager : MonoBehaviour
         {
             case InteractType.BoxMission:
                 CanGetBoxMission = true;
-                msg = "물건을 진열해야 합니다.\n도전하시겠습니까?";
+                msg = "물품을 진열해야 합니다.\n도전하시겠습니까?";
                 break;
             case InteractType.MiniGame:
-                msg = "진상 손님으로부터 도망갈 수 있습니다.";
+                msg = "진상 손님이 찾아왔습니다.";
                 break;
         }
         OnMessageUI(msg);
@@ -100,7 +100,7 @@ public class WorkManager : MonoBehaviour
 
         OffMessageUI();
     }
-    private void OnMessageUI(string msg)
+    public void OnMessageUI(string msg)
     {
         GameMessageUI.GetComponentInChildren<TextMeshProUGUI>().text = msg;
         GameMessageUI.SetActive(true);
@@ -144,6 +144,8 @@ public class WorkManager : MonoBehaviour
         int rewardCoin = (int)(Random.Range(0, boxWeight) * 10);
         resourceController.AddCoin(rewardCoin);
         // 표시
+        OnMessageUI($"진열하였습니다. {rewardCoin} 코인을 얻었습니다.");
+        Invoke("OffMessageUI", 1.5f);
         CompleteZone.ZoneParticle.Stop();
         BoxMissionZone.ZoneParticle.Play();
     }

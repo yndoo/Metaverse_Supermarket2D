@@ -28,11 +28,13 @@ public class CustomerHandler : MonoBehaviour
     AnimationHandler animationHandler;
     ResourceController resourceController;
     CustomerController customorController;
+    WorkManager workManager;
 
     private void Awake()
     {
         animationHandler = FindObjectOfType<AnimationHandler>();
         resourceController = FindObjectOfType<ResourceController>();
+        workManager = FindObjectOfType<WorkManager>();
         customersRandomFood = GetComponentInChildren<RandomFood>(true);
         customorController = GetComponent<CustomerController>();
     }
@@ -45,7 +47,7 @@ public class CustomerHandler : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("Player") == false) return;
-        if(WorkManager.Instance.IsWorking == true)
+        if(workManager.IsWorking == true)
         {
             return;
         }
@@ -54,18 +56,21 @@ public class CustomerHandler : MonoBehaviour
         {
             case ERequestState.EnterCustomer:
                 // 요청 띄우기 & 생성 & 상태 변경
+                workManager.OnMessageUI("손님 : 물건을 찾아주세요.");
                 Debug.Log("고객 입장");
-                WorkManager.Instance.NPCWorking = true;
+                workManager.NPCWorking = true;
                 FoodNum = customersRandomFood.RandomOn();
                 InitRequestZone();
                 CurState = ERequestState.FindFood;
                 break;
             case ERequestState.Delivery:
                 Debug.Log("운반 완료 끝!");
+                workManager.OnMessageUI("손님 : 감사합니다! 친절하시네요.");
+                Invoke("OffUI", 1f);
                 // 완료
                 CurState = ERequestState.Complete;
-                WorkManager.Instance.NPCWorking = false;
-                WorkManager.Instance.IsNPCExist = false;
+                workManager.NPCWorking = false;
+                workManager.IsNPCExist = false;
                 customorController.EndRequest = true;
 
                 customersRandomFood.SpriteColorOn();
@@ -81,6 +86,11 @@ public class CustomerHandler : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Invoke("OffUI", 1f);
     }
 
     private void InitRequestZone()
@@ -101,8 +111,8 @@ public class CustomerHandler : MonoBehaviour
         RequestZone = Instantiate(RequestPrefab, pos, Quaternion.identity);
     }
 
-    void EnterMarket()
+    void OffUI()
     {
-        // 입장 애니메이션  & 이동
+        workManager.OffMessageUI();
     }
 }
