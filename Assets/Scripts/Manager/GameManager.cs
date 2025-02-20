@@ -25,12 +25,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         LastPosition = Vector3.zero;
-    }
-
-    private void Update()
-    {
-        if(CustomerEventHandler == null)
-            CustomerEventHandler = Instantiate(CustomerEventPrefab).GetComponent<CustomerHandler>();
+        InvokeRepeating("RandomCustomerEvent", 1f, 10f);
     }
 
     public void CustomerEventInProgress()
@@ -42,5 +37,16 @@ public class GameManager : MonoBehaviour
         animationHandler = FindObjectOfType<AnimationHandler>();
         animationHandler.SwitchHolding(true);
         animationHandler.HeadFoodOn(CustomerEventHandler.FoodNum);
+    }
+
+    public void RandomCustomerEvent()
+    {
+        if (WorkManager.Instance.IsWorking == true) return;
+        if (CustomerEventHandler != null) return;
+
+        //int p = Random.Range(0, 101);
+        //if (p < 95) return; 
+
+        CustomerEventHandler = Instantiate(CustomerEventPrefab).GetComponent<CustomerHandler>();
     }
 }

@@ -36,11 +36,16 @@ public class CustomerHandler : MonoBehaviour
     }
     private void Start()
     {
+        FoodNum = 0;
         CurState = ERequestState.EnterCustomer;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("Player") == false) return;
+        if(WorkManager.Instance.IsWorking == true)
+        {
+            return;
+        }
 
         switch (CurState)
         {

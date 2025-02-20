@@ -17,13 +17,16 @@ public class RandomFood : MonoBehaviour
     public int RandomOn()
     {
         gameObject.SetActive(true); 
-        int idx = Random.Range(0, maxIndex);
+        int idx = Random.Range(0, maxIndex + 1);
+        if(idx < 0 || idx > maxIndex) idx = 0;
         foodRenderer.sprite = sprites[idx];
         return idx;
     }
 
     public void SetSpriteNum(int num)
     {
+        if (num < 0 || num > maxIndex) num = 0;
+
         foodRenderer.sprite = sprites[num];
     }
 

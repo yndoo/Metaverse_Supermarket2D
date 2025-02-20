@@ -32,6 +32,11 @@ public class AnimationHandler : MonoBehaviour
         playerFood.gameObject.SetActive(true);
         playerFood.SetSpriteNum(spriteNum);
     }
+    public void HeadFoodOn()
+    {
+        playerFood.gameObject.SetActive(true);
+        playerFood.RandomOn();
+    }
     public void HeadFoodOff()
     {
         playerFood.gameObject.SetActive(false);

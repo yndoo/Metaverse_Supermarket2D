@@ -16,4 +16,10 @@ public class ResourceManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
+
+    private void Start()
+    {
+        PlayerCoin = 0;
+        PlayerPopular = 0;
+    }
 }

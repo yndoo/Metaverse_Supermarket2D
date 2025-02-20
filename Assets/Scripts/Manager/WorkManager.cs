@@ -115,16 +115,13 @@ public class WorkManager : MonoBehaviour
     /// </summary>
     private void BoxMissionStart()
     {
+        IsWorking = true;
         // 상자 무게에 따라 이동 속도 감소
         boxWeight = Random.Range(0f, 4f);
         resourceController.MoveSpeed -= boxWeight;
         // 상자 들고있게 변경
         animationHandler.SwitchHolding(true);
-        if (randomBox == null)
-        {
-            randomBox = FindObjectOfType<RandomFood>(true);
-        }
-        randomBox.RandomOn();
+        animationHandler.HeadFoodOn();
         // 내려둘 곳 표시
         CompleteZone.ZoneParticle.Play();
         BoxMissionZone.ZoneParticle.Stop();

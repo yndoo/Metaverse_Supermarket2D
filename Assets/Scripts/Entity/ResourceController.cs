@@ -36,6 +36,7 @@ public class ResourceController : MonoBehaviour
         transform.position = GameManager.Instance.LastPosition;
         MoveSpeed = 5f;
         AddCoin(resourceManager.PlayerCoin);
+        AddPopular(resourceManager.PlayerPopular);
     }
 
     public void AddCoin(int amount)
