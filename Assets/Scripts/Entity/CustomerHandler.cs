@@ -23,7 +23,7 @@ public class CustomerHandler : MonoBehaviour
     
     private void Start()
     {
-        randomFood = GetComponentInChildren<RandomFood>();
+        randomFood = GetComponentInChildren<RandomFood>(true);
         CurState = ERequestState.EnterCustomer;
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,18 +36,38 @@ public class CustomerHandler : MonoBehaviour
                 // 요청 띄우기 & 생성 & 상태 변경
                 Debug.Log("고객 입장");
                 randomFood.RandomOn();
-                RequestZone = Instantiate(RequestPrefab);
+                InitRequestZone();
                 CurState = ERequestState.FindFood;
                 break;
             case ERequestState.Delivery:
                 Debug.Log("운반 완료 끝!");
+                randomFood.SpriteColorOn();
                 // 완료
                 CurState = ERequestState.Complete;
-                Destroy(gameObject);
+                Destroy(RequestZone, 1f);
+                Destroy(gameObject, 1f);
                 // 보상
                 break;
             default:
                 break;
         }
+    }
+
+    private void InitRequestZone()
+    {
+        int p = Random.Range(0, 2);
+        Vector3 pos = Vector3.zero;
+        if(p == 0)
+        {
+            pos.x = Random.Range(1.5f, 4.5f);
+            pos.y = 4f;
+        }
+        else
+        {
+            pos.x = Random.Range(-4.5f, -3.4f);
+            pos.y = 7f;
+        }
+
+        RequestZone = Instantiate(RequestPrefab, pos, Quaternion.identity);
     }
 }

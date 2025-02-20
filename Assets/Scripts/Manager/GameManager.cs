@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     public void CustomerEventInProgress()
     {
+        if (CustomerEventHandler.CurState != ERequestState.FindFood) return;
         Debug.Log("물건 찾았음. 운반 중");
         CustomerEventHandler.CurState = ERequestState.Delivery;
         // 플레이어 IsHolding

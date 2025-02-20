@@ -672,7 +672,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0.04, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1.25, y: 0.53, z: 1}
+    m_Scale: {x: 0.35, y: 0.53, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -1308,8 +1308,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0, g: 1, b: 0, a: 0.5019608}
-        key1: {r: 0, g: 1, b: 0, a: 0.5019608}
+        key0: {r: 1, g: 0.35601696, b: 0, a: 0.5019608}
+        key1: {r: 1, g: 0.39164284, b: 0, a: 0.5019608}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -4797,7 +4797,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 190
+  m_SortingOrder: 250
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0

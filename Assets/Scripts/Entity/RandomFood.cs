@@ -20,4 +20,9 @@ public class RandomFood : MonoBehaviour
         int idx = Random.Range(0, maxIndex);
         foodRenderer.sprite = sprites[idx];
     }
+
+    public void SpriteColorOn()
+    {
+        foodRenderer.color = Color.white;
+    }
 }
