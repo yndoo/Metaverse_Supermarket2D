@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
         if (CustomerEventHandler.CurState != ERequestState.FindFood) return;
         Debug.Log("물건 찾았음. 운반 중");
         CustomerEventHandler.CurState = ERequestState.Delivery;
+        WorkManager.Instance.NPCWorking = true;
+
         // 플레이어 IsHolding
         animationHandler = FindObjectOfType<AnimationHandler>();
         animationHandler.SwitchHolding(true);

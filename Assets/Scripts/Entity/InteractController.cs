@@ -60,7 +60,7 @@ public class InteractController : MonoBehaviour
                     break;
                 case InteractType.MissionComplete:
                     // 필요하다면 미션 조건 확인
-                    if (workManager.IsWorking)
+                    if (workManager.IsWorking && WorkManager.Instance.NPCWorking == false)
                     {
                         workManager.BoxMissionComplete();
                     }

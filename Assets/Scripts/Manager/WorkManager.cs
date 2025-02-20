@@ -11,8 +11,9 @@ public class WorkManager : MonoBehaviour
 
     public static WorkManager Instance { get; private set; }
 
-    public bool CanGetBoxMission { get; set; } // 박스 미션 받을 수 있는 상태 확인 (미션 미수행 && 상호작용 상태여야 함.)
-    public bool IsWorking { get; set; } // 미션 수행 중.
+    public bool CanGetBoxMission { get; set; } // 박스 미션 받을 수 있는 상태 확인 (박스 미션 미수행 && 상호작용 상태여야 함.)
+    public bool IsWorking { get; set; } // 어떤 종류든 일하는 중.
+    public bool NPCWorking { get; set; } // NPC 퀘스트 운반 중(다른 일 못하는 상태)
     public InteractType CurZone { get; set; }
 
     public InteractController BoxMissionZone;
@@ -73,7 +74,7 @@ public class WorkManager : MonoBehaviour
     /// </summary>
     public void MissionStart()
     {
-        if (IsWorking) return; // 미션을 진행 중이면 X
+        if (IsWorking || NPCWorking) return; // 미션을 진행 중이면 X
 
         switch (CurZone)
         {

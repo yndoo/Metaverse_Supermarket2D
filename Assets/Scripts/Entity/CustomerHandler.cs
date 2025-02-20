@@ -60,6 +60,7 @@ public class CustomerHandler : MonoBehaviour
                 Debug.Log("운반 완료 끝!");
                 // 완료
                 CurState = ERequestState.Complete;
+                WorkManager.Instance.NPCWorking = false;
                 customersRandomFood.SpriteColorOn();
                 animationHandler.SwitchHolding(false);
                 animationHandler.HeadFoodOff();
