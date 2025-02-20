@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public Vector3 LastPosition {  get; set; }
 
-    ResourceController resourceController;
     AnimationHandler animationHandler;
 
     // 게임 이벤트 스포너 역할을 해야 함...
@@ -46,9 +45,11 @@ public class GameManager : MonoBehaviour
         if (WorkManager.Instance.IsWorking == true) return;
         if (CustomerEventHandler != null) return;
 
-        //int p = Random.Range(0, 101);
-        //if (p < 95) return; 
-
-        CustomerEventHandler = Instantiate(CustomerEventPrefab).GetComponent<CustomerHandler>();
+        int p = Random.Range(0, 101);
+        Debug.Log(p);
+        if (p < ResourceManager.Instance.PlayerPopular + 50)
+        {
+            CustomerEventHandler = Instantiate(CustomerEventPrefab).GetComponent<CustomerHandler>();
+        }
     }
 }
