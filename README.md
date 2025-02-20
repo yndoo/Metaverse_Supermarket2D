@@ -1,22 +1,29 @@
 <div align="center">
 
-<!-- logo -->
-추가 예정
+# 🛒 Metaverse Supermarket2D
 
-## Metaverse Supermarket2D
+<!-- 로고 추가 예정 -->
 
-[<img src="https://img.shields.io/badge/Github-181717?style=flat&logo=Github&logoColor=white" />]() [<img src="https://img.shields.io/badge/Notion-white?style=flat&logo=notion&logoColor=black" />]() [<img src="https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=figma&logoColor=white" />]()
-<br/> [<img src="https://img.shields.io/badge/프로젝트 기간-2025.02.18~2025.02.20-f0802b?style=flat&logo=&logoColor=white" />]()
+[<img src="https://img.shields.io/badge/Github-181717?style=flat&logo=Github&logoColor=white" />]()
+[<img src="https://img.shields.io/badge/Notion-white?style=flat&logo=notion&logoColor=black" />]()
+[<img src="https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=figma&logoColor=white" />]()
+<br/>
+[<img src="https://img.shields.io/badge/프로젝트 기간-2025.02.18~2025.02.20-f0802b?style=flat&logo=&logoColor=white" />]()
 
-</div> 
+</div>
+
+---
 
 ## 📝 프로젝트 소개
-타일맵 기반의 2D 공간과 맵 또는 오브젝트와의 상호작용을 구현하는 것을 목표로 만든 'Metaverse Supermarket2D' 입니다. 슈퍼마켓의 점장이 되어 업무를 수행할 수 있습니다.
-<br />
+
+**Metaverse Supermarket2D**는 타일맵 기반의 2D 공간에서 맵 및 오브젝트와의 상호작용을 구현하는 게임입니다. <br>
+플레이어는 슈퍼마켓의 점장이 되어 업무를 수행하고, 다양한 이벤트와 미니게임을 경험할 수 있습니다.
+
+---
 
 ## 🎮 게임 개요
 
-| **기능** | **설명** |
+| 기능 | 설명 |
 |---|---|
 | 🏪 **슈퍼마켓** | 다양한 상호작용 오브젝트와 랜덤한 NPC 이벤트가 발생하는 공간입니다. |
 | 📦 **박스 미션** | 창고에서 업무를 수락하면, 박스에서 꺼낸 물품을 진열해야 합니다. <br> 진열을 성공하면 **코인 보상**을 획득할 수 있습니다. <br> 물품의 무게가 무거울수록 이동속도가 느려집니다.|
@@ -24,29 +31,43 @@
 | 🙋 **손님 요청 이벤트** | 일정 확률로 손님이 물품을 요청하는 이벤트가 발생합니다. <br> 요청한 물건을 전달하면 **🪙 코인**과 **⭐ 인기도 보상**을 얻을 수 있습니다. |
 | 💰 **재화** | **🪙 코인** : 게임의 주요 재화입니다. <br> **🌟 인기도** : 손님 요청 이벤트의 발생 확률을 높여줍니다. |
 
-
-<br />  
-
 ---
 
 ## 📸 화면 구성
-|박스 미션|
-|---|
-|![](./images/boxmission_heavy.gif)![](./images/boxmission1.gif)|
-|물건 무게에 따라 이동속도가 달라집니다.|
 
-|미니게임|
-|---|
-|![](./images/minigame1.gif)|
-|미니게임에서 코인 보상을 획득할 수 있습니다.|
+### 📦 박스 미션
+|무거운 물품|적당히 무거운 물품|
+|---|---|
+|<img src="./images/boxmission_heavy.gif" width="45%" /> | <img src="./images/boxmission1.gif" width="45%" />| 
+> 물건 무게에 따라 이동속도가 달라집니다. 
 
-|손님 요청 이벤트(NPC)|
-|---|
-|![](./images/npc1.gif)![](./images/npc2.gif)|
-|물품의 위치는 진열대 중에 랜덤입니다.<br> 손님이 찾는 물품은 빨간색 파티클로 표시됩니다. |
+### 🎮 미니게임
+<img src="./images/minigame1.gif" width="50%" /> <br>
+> 미니게임에서 코인 보상을 획득할 수 있습니다.
 
-<br />   
+### 🙋 손님 요청 이벤트(NPC)
+|진열대 1|진열대 2|
+|---|---|
+|<img src="./images/npc1.gif" width="45%" />  | <img src="./images/npc2.gif" width="45%" />| 
+> 손님이 찾는 물품의 위치는 진열대 중에 랜덤입니다. 붉은색 파티클로 표시됩니다.
 
 ---
 
-<br /><br />
+## 📌 주요 특징
+✔️ 직관적인 인터페이스와 쉬운 조작법<br>
+✔️ 다양한 미션과 상호작용 요소 제공<br>
+✔️ 불시에 등장하는 NPC와의 상호작용을 통한 몰입감 향상<br>
+
+---
+
+## 🚀 
+
+
+---
+
+## 
+
+<div align="center">
+✨ **Metaverse Supermarket2D** 프로젝트에 관심을 가져주셔서 감사합니다! ✨
+</div>
+
