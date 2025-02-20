@@ -43,6 +43,8 @@ public class MiniGameSystem : MonoBehaviour
         TimeResultTxt = rewards[0];
         CoinResultTxt = rewards[1];
         BestRecordTxt = rewards[2];
+        WorkManager.Instance.IsWorking = true;
+        WorkManager.Instance.IsNPCExist = false; // 미니게임 시 있던 엔피시 사라지기 때문에 처리해줘야 함. 
     }
 
     private void Update()
@@ -67,6 +69,7 @@ public class MiniGameSystem : MonoBehaviour
         {
             // 게임 끝
             IsRunning = false;
+            WorkManager.Instance.IsWorking = false;
             // 기록 계산
             float best = PlayerPrefs.GetFloat(bestRecordKey);
             if(best < curTime)

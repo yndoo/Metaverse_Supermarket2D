@@ -21,6 +21,11 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
+
+    public void SetCustomerHandler(CustomerHandler ch)
+    {
+        CustomerEventHandler = ch;
+    }
     void Start()
     {
         LastPosition = Vector3.zero;
@@ -42,7 +47,7 @@ public class GameManager : MonoBehaviour
 
     public void RandomCustomerEvent()
     {
-        if (WorkManager.Instance.IsWorking == true) return;
+        if (WorkManager.Instance.IsWorking == true || WorkManager.Instance.IsNPCExist == true) return;
         if (CustomerEventHandler != null) return;
 
         int p = Random.Range(0, 101);
@@ -50,6 +55,7 @@ public class GameManager : MonoBehaviour
         if (p < ResourceManager.Instance.PlayerPopular + 50)
         {
             CustomerEventHandler = Instantiate(CustomerEventPrefab).GetComponent<CustomerHandler>();
+            WorkManager.Instance.IsNPCExist = true;
         }
     }
 }

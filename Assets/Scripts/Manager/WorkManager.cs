@@ -14,6 +14,7 @@ public class WorkManager : MonoBehaviour
     public bool CanGetBoxMission { get; set; } // 박스 미션 받을 수 있는 상태 확인 (박스 미션 미수행 && 상호작용 상태여야 함.)
     public bool IsWorking { get; set; } // 어떤 종류든 일하는 중.
     public bool NPCWorking { get; set; } // NPC 퀘스트 운반 중(다른 일 못하는 상태)
+    public bool IsNPCExist { get; set; } // 손님 존재 여부
     public InteractType CurZone { get; set; }
 
     public InteractController BoxMissionZone;
@@ -88,6 +89,7 @@ public class WorkManager : MonoBehaviour
                 break;
             case InteractType.MiniGame:
                 // 미니게임 시작 
+                WorkManager.Instance.IsNPCExist = false; // 미니게임 시 있던 엔피시 사라지기 때문에 처리해줘야 함. 
                 SceneManager.LoadScene("MiniGameScene");
                 break;
             case InteractType.MissionComplete:
