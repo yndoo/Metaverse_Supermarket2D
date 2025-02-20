@@ -11,9 +11,9 @@ public class MissionManager : MonoBehaviour
 
     public static MissionManager instance;
 
-    public bool CanGetMission { get; set; }
+    public bool CanGetBoxMission { get; set; } // 박스 미션 받을 수 있는 상태 확인 (미션 미수행 && 상호작용 상태여야 함.)
 
-    private bool hasMission = false;
+    private bool hasMission = false; // 미션 수행 중.
     private InteractType curZone;
     private float boxWeight;
 
@@ -53,19 +53,21 @@ public class MissionManager : MonoBehaviour
     {
         return hasMission;
     }
+    public void SetCurZone(InteractType zone)
+    {
+        this.curZone = zone;
+    }
 
     #region 미션 UI 관련
-    public void ShowMissionDesc(InteractType type)
+    public void ShowMissionDesc()
     {
         if (hasMission) return; // 미션을 진행 중이면 X
 
-        CanGetMission = true;
-        curZone = type;
-
         string msg = "";
-        switch(type)
+        switch(curZone)
         {
             case InteractType.BoxMission:
+                CanGetBoxMission = true;
                 msg = "물건을 진열해야 합니다.\n도전하시겠습니까?";
                 break;
             case InteractType.MiniGame:
@@ -80,21 +82,28 @@ public class MissionManager : MonoBehaviour
     public void MissionStart()
     {
         if (hasMission) return; // 미션을 진행 중이면 X
-        OffMissionUI();
 
-        switch(curZone)
+        switch (curZone)
         {
             case InteractType.BoxMission:
-                BoxMissionStart();
+                if (CanGetBoxMission)
+                {
+                    BoxMissionStart();
+                    CanGetBoxMission = false;
+                    hasMission = true;
+                }
                 break;
             case InteractType.MiniGame:
                 // 미니게임 시작 
                 SceneManager.LoadScene("MiniGameScene");
                 break;
+            case InteractType.MissionComplete:
+                break;
             default:
                 break;
         }
 
+        OffMissionUI();
     }
     private void ShowGetMissionUI(string msg)
     {
@@ -103,6 +112,7 @@ public class MissionManager : MonoBehaviour
     }
     public void OffMissionUI()
     {
+        CanGetBoxMission = false;
         MissionMessageUI.SetActive(false);
     }
     #endregion
@@ -112,7 +122,6 @@ public class MissionManager : MonoBehaviour
     /// </summary>
     private void BoxMissionStart()
     {
-        hasMission = true;
         // 상자 무게에 따라 이동 속도 감소
         boxWeight = Random.Range(0f, 4f);
         resourceController.MoveSpeed -= boxWeight;
@@ -133,6 +142,7 @@ public class MissionManager : MonoBehaviour
     public void BoxMissionComplete()
     {
         hasMission = false;
+
         animationHandler.SwitchHolding(false);
         randomBox.gameObject.SetActive(false);
         // 미션 완료 보상

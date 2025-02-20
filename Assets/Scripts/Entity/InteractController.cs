@@ -46,13 +46,15 @@ public class InteractController : MonoBehaviour
         int isInsteract = canInteractTargetLayers.value | (1 << collision.gameObject.layer);
         if (canInteractTargetLayers.value == isInsteract)
         {
-            switch(interactType)
+            missionManager.SetCurZone(interactType);
+
+            switch (interactType)
             {
                 case InteractType.BoxMission:
                 case InteractType.MiniGame:
                     if (!missionManager.DoingMission())
                     {
-                        missionManager.ShowMissionDesc(interactType);
+                        missionManager.ShowMissionDesc();
                     }
                     break;
                 case InteractType.MissionComplete:
