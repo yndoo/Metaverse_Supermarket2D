@@ -14490,6 +14490,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d485d55f8fb064f8da5ef45d57bb36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &959208347 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6016559979569068519, guid: 7bde651f576e91640ab95b25a6e54438, type: 3}
+  m_PrefabInstance: {fileID: 420332651}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bac2adeca90cd2045855e7558868ffbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &984042977
 GameObject:
   m_ObjectHideFlags: 0
@@ -15388,7 +15399,7 @@ GameObject:
   - component: {fileID: 1131614651}
   - component: {fileID: 1131614652}
   m_Layer: 0
-  m_Name: MissionManager
+  m_Name: WorkManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15422,9 +15433,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 230b6674765a28c4caab38e7b85f65c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MissionMessageUI: {fileID: 127553846}
-  MissionZone: {fileID: 0}
-  CompleteZone: {fileID: 0}
+  GameMessageUI: {fileID: 127553846}
+  BoxMissionZone: {fileID: 1434481359}
+  CompleteZone: {fileID: 959208347}
 --- !u!1 &1409056554
 GameObject:
   m_ObjectHideFlags: 0
@@ -16660,6 +16671,17 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!114 &1434481359 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6016559979569068519, guid: 7bde651f576e91640ab95b25a6e54438, type: 3}
+  m_PrefabInstance: {fileID: 2650757535682190296}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bac2adeca90cd2045855e7558868ffbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1469380902
 GameObject:
   m_ObjectHideFlags: 0

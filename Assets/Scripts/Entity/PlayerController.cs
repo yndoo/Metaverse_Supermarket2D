@@ -60,13 +60,8 @@ public class PlayerController : MonoBehaviour
             MiniGameMode = false;
             return;
         }
-
-        //if(MissionManager.instance.CanGetBoxMission)
-        //{
-        //    return;
-        //}
-
-        MissionManager.instance.MissionStart();
+        
+        WorkManager.Instance.MissionStart();
         GameManager.Instance.LastPosition = transform.position;
     }
 }

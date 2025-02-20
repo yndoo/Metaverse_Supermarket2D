@@ -17,21 +17,21 @@ public class InteractController : MonoBehaviour
     public ParticleSystem ZoneParticle;
     public InteractType interactType;
 
-    MissionManager missionManager;
+    WorkManager workManager;
 
     private void Start()
     {
-        missionManager = FindObjectOfType<MissionManager>();
+        workManager = FindObjectOfType<WorkManager>();
         ZoneParticle = GetComponentInChildren<ParticleSystem>();
         // 인터랙션 존 표시 
         switch (interactType)
         { 
             case InteractType.BoxMission:
-                missionManager.MissionZone = this;
+                workManager.BoxMissionZone = this;
                 ZoneParticle.Play();
                 break;
                 case InteractType.MissionComplete:
-                missionManager.CompleteZone = this;
+                workManager.CompleteZone = this;
                 ZoneParticle.Stop();
                 break;
             default:
@@ -46,22 +46,22 @@ public class InteractController : MonoBehaviour
         int isInsteract = canInteractTargetLayers.value | (1 << collision.gameObject.layer);
         if (canInteractTargetLayers.value == isInsteract)
         {
-            missionManager.SetCurZone(interactType);
+            workManager.CurZone = interactType;
 
             switch (interactType)
             {
                 case InteractType.BoxMission:
                 case InteractType.MiniGame:
-                    if (!missionManager.DoingMission())
+                    if (!workManager.IsWorking)
                     {
-                        missionManager.ShowMissionDesc();
+                        workManager.ShowMissionDesc();
                     }
                     break;
                 case InteractType.MissionComplete:
                     // 필요하다면 미션 조건 확인
-                    if (missionManager.DoingMission())
+                    if (workManager.IsWorking)
                     {
-                        missionManager.BoxMissionComplete();
+                        workManager.BoxMissionComplete();
                     }
                     break;
                 default:
@@ -80,7 +80,7 @@ public class InteractController : MonoBehaviour
             {
                 case InteractType.BoxMission:
                 case InteractType.MiniGame:
-                    missionManager.OffMissionUI();
+                    workManager.OffMessageUI();
                     break;
                 default:
                     break;

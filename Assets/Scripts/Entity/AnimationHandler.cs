@@ -18,7 +18,7 @@ public class AnimationHandler : MonoBehaviour
     }
     private void Start()
     {
-        MissionManager.instance.AnimHandlerInit(this);
+        WorkManager.Instance.AnimHandlerInit(this);
     }
     public void SwitchHolding(bool on)
     {

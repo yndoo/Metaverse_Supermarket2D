@@ -5,30 +5,31 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class MissionManager : MonoBehaviour
+public class WorkManager : MonoBehaviour
 {
-    [SerializeField] private GameObject MissionMessageUI;
+    [SerializeField] private GameObject GameMessageUI;
 
-    public static MissionManager instance;
+    public static WorkManager Instance { get; private set; }
 
     public bool CanGetBoxMission { get; set; } // 박스 미션 받을 수 있는 상태 확인 (미션 미수행 && 상호작용 상태여야 함.)
+    public bool IsWorking { get; set; } // 미션 수행 중.
+    public InteractType CurZone { get; set; }
 
-    private bool hasMission = false; // 미션 수행 중.
-    private InteractType curZone;
-    private float boxWeight;
-
-    public InteractController MissionZone;
+    public InteractController BoxMissionZone;
     public InteractController CompleteZone;
 
     private UIManager uiManager;
     private ResourceController resourceController;
     private AnimationHandler animationHandler;
     private RandomFood randomBox;
+
+    private float boxWeight;
+
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
 
@@ -49,22 +50,13 @@ public class MissionManager : MonoBehaviour
         resourceController = rc;
     }
 
-    public bool DoingMission()
-    {
-        return hasMission;
-    }
-    public void SetCurZone(InteractType zone)
-    {
-        this.curZone = zone;
-    }
-
     #region 미션 UI 관련
     public void ShowMissionDesc()
     {
-        if (hasMission) return; // 미션을 진행 중이면 X
+        if (IsWorking) return; // 미션을 진행 중이면 X
 
         string msg = "";
-        switch(curZone)
+        switch(CurZone)
         {
             case InteractType.BoxMission:
                 CanGetBoxMission = true;
@@ -74,23 +66,23 @@ public class MissionManager : MonoBehaviour
                 msg = "진상 손님으로부터 도망갈 수 있습니다.";
                 break;
         }
-        ShowGetMissionUI(msg);
+        OnMessageUI(msg);
     }
     /// <summary>
     /// 미션 수락 시 실행
     /// </summary>
     public void MissionStart()
     {
-        if (hasMission) return; // 미션을 진행 중이면 X
+        if (IsWorking) return; // 미션을 진행 중이면 X
 
-        switch (curZone)
+        switch (CurZone)
         {
             case InteractType.BoxMission:
                 if (CanGetBoxMission)
                 {
                     BoxMissionStart();
                     CanGetBoxMission = false;
-                    hasMission = true;
+                    IsWorking = true;
                 }
                 break;
             case InteractType.MiniGame:
@@ -103,20 +95,21 @@ public class MissionManager : MonoBehaviour
                 break;
         }
 
-        OffMissionUI();
+        OffMessageUI();
     }
-    private void ShowGetMissionUI(string msg)
+    private void OnMessageUI(string msg)
     {
-        MissionMessageUI.GetComponentInChildren<TextMeshProUGUI>().text = msg;
-        MissionMessageUI.SetActive(true);
+        GameMessageUI.GetComponentInChildren<TextMeshProUGUI>().text = msg;
+        GameMessageUI.SetActive(true);
     }
-    public void OffMissionUI()
+    public void OffMessageUI()
     {
         CanGetBoxMission = false;
-        MissionMessageUI.SetActive(false);
+        GameMessageUI.SetActive(false);
     }
     #endregion
 
+    #region 박스 미션
     /// <summary>
     /// 창고 물건 진열하는 미션 시작 행동 ('박스미션' 으로 통칭)
     /// </summary>
@@ -134,14 +127,14 @@ public class MissionManager : MonoBehaviour
         randomBox.RandomOn();
         // 내려둘 곳 표시
         CompleteZone.ZoneParticle.Play();
-        MissionZone.ZoneParticle.Stop();
+        BoxMissionZone.ZoneParticle.Stop();
     }
     /// <summary>
     /// 박스미션 완료 행동
     /// </summary>
     public void BoxMissionComplete()
     {
-        hasMission = false;
+        IsWorking = false;
 
         animationHandler.SwitchHolding(false);
         randomBox.gameObject.SetActive(false);
@@ -151,6 +144,7 @@ public class MissionManager : MonoBehaviour
         resourceController.AddCoin(rewardCoin);
         // 표시
         CompleteZone.ZoneParticle.Stop();
-        MissionZone.ZoneParticle.Play();
+        BoxMissionZone.ZoneParticle.Play();
     }
+    #endregion
 }

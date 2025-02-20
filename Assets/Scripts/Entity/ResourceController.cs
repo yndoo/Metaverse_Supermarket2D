@@ -13,7 +13,7 @@ public class ResourceController : MonoBehaviour
     private TextMeshProUGUI coinText;
 
     private GameManager gameManager;
-    private MissionManager missionManager;
+    private WorkManager workManager;
     #endregion
 
     private void Awake()
@@ -24,8 +24,8 @@ public class ResourceController : MonoBehaviour
             coinText = gameUI.GetComponentInChildren<TextMeshProUGUI>();
         }
         gameManager = FindObjectOfType<GameManager>();
-        missionManager = FindObjectOfType<MissionManager>();
-        missionManager.ResourceInit(this);
+        workManager = FindObjectOfType<WorkManager>();
+        workManager.ResourceInit(this);
     }
 
     private void Start()
