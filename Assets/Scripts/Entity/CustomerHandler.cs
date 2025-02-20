@@ -27,12 +27,14 @@ public class CustomerHandler : MonoBehaviour
 
     AnimationHandler animationHandler;
     ResourceController resourceController;
+    CustomerController customorController;
 
     private void Awake()
     {
         animationHandler = FindObjectOfType<AnimationHandler>();
         resourceController = FindObjectOfType<ResourceController>();
         customersRandomFood = GetComponentInChildren<RandomFood>(true);
+        customorController = GetComponent<CustomerController>();
     }
     private void Start()
     {
@@ -62,6 +64,8 @@ public class CustomerHandler : MonoBehaviour
                 // 완료
                 CurState = ERequestState.Complete;
                 WorkManager.Instance.NPCWorking = false;
+                customorController.EndRequest = true;
+
                 customersRandomFood.SpriteColorOn();
                 animationHandler.SwitchHolding(false);
                 animationHandler.HeadFoodOff();
@@ -69,8 +73,8 @@ public class CustomerHandler : MonoBehaviour
                 resourceController.AddPopular(1);
                 resourceController.AddCoin(10);
                 // 제거
-                Destroy(RequestZone, 1f);
-                Destroy(gameObject, 1f);
+                Destroy(RequestZone, 2f);
+                Destroy(gameObject, 2f);
                 break;
             default:
                 break;
@@ -93,5 +97,10 @@ public class CustomerHandler : MonoBehaviour
         }
 
         RequestZone = Instantiate(RequestPrefab, pos, Quaternion.identity);
+    }
+
+    void EnterMarket()
+    {
+        // 입장 애니메이션  & 이동
     }
 }
