@@ -2,7 +2,8 @@
 
 # 🛒 Metaverse Supermarket2D
 
-<!-- 로고 추가 예정 -->
+![image](https://github.com/user-attachments/assets/e051aa76-d118-4a00-80cd-5e69acdc9678)
+
 
 [<img src="https://img.shields.io/badge/Github-181717?style=flat&logo=Github&logoColor=white" />]()
 [<img src="https://img.shields.io/badge/Notion-white?style=flat&logo=notion&logoColor=black" />]()
@@ -16,8 +17,8 @@
 
 ## 📝 프로젝트 소개
 
-**Metaverse Supermarket2D**는 타일맵 기반의 2D 공간에서 맵 및 오브젝트와의 상호작용을 구현하는 게임입니다. <br>
-플레이어는 슈퍼마켓의 점장이 되어 업무를 수행하고, 다양한 이벤트와 미니게임을 경험할 수 있습니다.
+**Metaverse Supermarket2D**는 타일맵 기반의 2D 공간에서 맵 및 오브젝트와의 상호작용을 구현한 게임입니다. <br>
+플레이어는 슈퍼마켓의 점장이 되어 업무를 수행하고, 랜덤한 이벤트와 미니게임을 경험할 수 있습니다.
 
 ---
 
@@ -38,7 +39,7 @@
 ### 📦 박스 미션
 |무거운 물품|적당히 무거운 물품|
 |---|---|
-|<img src="./images/boxmission_heavy.gif" width="45%" /> | <img src="./images/boxmission1.gif" width="45%" />| 
+|<div align="center"><img src="./images/boxmission_heavy.gif" width="90%" /> | <div align="center"><img src="./images/boxmission1.gif" width="90%" />| 
 > 물건 무게에 따라 이동속도가 달라집니다. 
 
 ### 🎮 미니게임
@@ -48,7 +49,7 @@
 ### 🙋 손님 요청 이벤트(NPC)
 |진열대 1|진열대 2|
 |---|---|
-|<img src="./images/npc1.gif" width="45%" />  | <img src="./images/npc2.gif" width="45%" />| 
+|<div align="center"><img src="./images/npc1.gif" width="90%" />  | <div align="center"><img src="./images/npc2.gif" width="90%" />| 
 > 손님이 찾는 물품의 위치는 진열대 중에 랜덤입니다. 붉은색 파티클로 표시됩니다.
 
 ---
@@ -60,8 +61,8 @@
 
 ---
 
-## 🚀 
-
+## 🚀 게임 실행하기
+[플레이 링크](https://yndoo.itch.io/metaverse-supermarket2d)
 
 ---
 
