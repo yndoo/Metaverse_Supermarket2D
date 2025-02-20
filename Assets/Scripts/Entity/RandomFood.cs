@@ -17,7 +17,7 @@ public class RandomFood : MonoBehaviour
     public int RandomOn()
     {
         gameObject.SetActive(true); 
-        int idx = Random.Range(0, maxIndex + 1);
+        int idx = Random.Range(0, maxIndex);
         if(idx < 0 || idx > maxIndex) idx = 0;
         foodRenderer.sprite = sprites[idx];
         return idx;

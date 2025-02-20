@@ -40,6 +40,7 @@ public class CustomerHandler : MonoBehaviour
     {
         FoodNum = 0;
         CurState = ERequestState.EnterCustomer;
+        GameManager.Instance.SetCustomerHandler(this);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -64,6 +65,7 @@ public class CustomerHandler : MonoBehaviour
                 // ¿Ï·á
                 CurState = ERequestState.Complete;
                 WorkManager.Instance.NPCWorking = false;
+                WorkManager.Instance.IsNPCExist = false;
                 customorController.EndRequest = true;
 
                 customersRandomFood.SpriteColorOn();
