@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class GameUI : BaseUI
 {
+    public TextMeshProUGUI CoinText;
+    public TextMeshProUGUI PopularText;
 
-    private void Start()
-    {
-    }
     protected override UIState GetUIState()
     {
         return UIState.GameUI;
@@ -18,5 +17,17 @@ public class GameUI : BaseUI
     {
         base.Init(uiManager);
     }
-
+    public void UpdatePolular(int popular)
+    {
+        PopularText.text = popular.ToString();
+    }
+    public void UpdateCoin(int coin)
+    {
+        CoinText.text = coin.ToString();
+    }
+    public void UpdateAllStat(int popular, int coin)
+    {
+        PopularText.text = popular.ToString();
+        CoinText.text = coin.ToString();
+    }
 }

@@ -5,16 +5,18 @@ using UnityEngine;
 
 public class ResourceController : MonoBehaviour
 {
-    #region 선언
+    #region 리소스
     public float MoveSpeed { get; set; }
-
     private int coin = 0;
+    private int popular = 0;
+    #endregion
+
+
     private GameUI gameUI;
     private TextMeshProUGUI coinText;
 
     private GameManager gameManager;
     private WorkManager workManager;
-    #endregion
 
     private void Awake()
     {
@@ -39,6 +41,12 @@ public class ResourceController : MonoBehaviour
     {
         coin += amount;
         gameManager.PlayerCoin = coin;
-        coinText.text = coin.ToString();
+        gameUI.UpdateCoin(coin);
+    }
+
+    public void AddPopular(int amount)
+    {
+        popular += amount;
+        gameUI.UpdatePolular(popular);
     }
 }

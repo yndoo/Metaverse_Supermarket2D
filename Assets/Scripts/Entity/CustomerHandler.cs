@@ -25,12 +25,13 @@ public class CustomerHandler : MonoBehaviour
     private GameObject RequestZone;
     private RandomFood customersRandomFood;
 
-
     AnimationHandler animationHandler;
+    ResourceController resourceController;
 
     private void Awake()
     {
         animationHandler = FindObjectOfType<AnimationHandler>();
+        resourceController = FindObjectOfType<ResourceController>();
         customersRandomFood = GetComponentInChildren<RandomFood>(true);
     }
     private void Start()
@@ -58,7 +59,8 @@ public class CustomerHandler : MonoBehaviour
                 animationHandler.SwitchHolding(false);
                 animationHandler.HeadFoodOff();
                 // 보상
-
+                resourceController.AddPopular(1);
+                resourceController.AddCoin(10);
                 // 제거
                 Destroy(RequestZone, 1f);
                 Destroy(gameObject, 1f);
