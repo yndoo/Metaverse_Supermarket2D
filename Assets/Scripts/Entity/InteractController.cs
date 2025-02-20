@@ -7,6 +7,7 @@ public enum InteractType
     BoxMission,
     MissionComplete,
     MiniGame,
+    CustomerRequest,
 }
 
 public class InteractController : MonoBehaviour
@@ -63,6 +64,10 @@ public class InteractController : MonoBehaviour
                     {
                         workManager.BoxMissionComplete();
                     }
+                    break;
+                case InteractType.CustomerRequest:
+                    // 고객 요청 이벤트 진행 중
+                    GameManager.Instance.CustomerEventInProgress();
                     break;
                 default:
                     break;

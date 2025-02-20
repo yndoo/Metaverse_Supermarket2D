@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
 
     ResourceController resourceController;
 
+    // 게임 이벤트 스포너 역할을 해야 함...
+    public GameObject CustomerEventPrefab;
+    public CustomerHandler CustomerEventHandler {  get; set; }
+
     private void Awake()
     {
         if (Instance == null)
@@ -22,5 +26,18 @@ public class GameManager : MonoBehaviour
     {
         PlayerCoin = 0;
         LastPosition = Vector3.zero;
+    }
+
+    private void Update()
+    {
+        if(CustomerEventHandler == null)
+            CustomerEventHandler = Instantiate(CustomerEventPrefab).GetComponent<CustomerHandler>();
+    }
+
+    public void CustomerEventInProgress()
+    {
+        Debug.Log("물건 찾았음. 운반 중");
+        CustomerEventHandler.CurState = ERequestState.Delivery;
+        // 플레이어 IsHolding
     }
 }

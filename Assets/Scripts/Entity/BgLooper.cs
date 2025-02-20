@@ -27,7 +27,7 @@ public class BgLooper : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (MiniGameSystem.instance.IsRunning == false) return;
+        if (MiniGameSystem.Instance.IsRunning == false) return;
 
         // ¹è°æ looper
         if(collision.CompareTag("background"))

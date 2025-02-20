@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         if(MiniGameMode && collision.gameObject.CompareTag("obstacle"))
         {
-            MiniGameSystem.instance.OffLifeUI();
+            MiniGameSystem.Instance.OffLifeUI();
         }
     }
 
@@ -54,13 +54,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnInteraction()
     {
-        if (MiniGameMode)
+        // 미니게임 끝나고 돌아오는 입력
+        if (MiniGameMode && MiniGameSystem.Instance.IsRunning == false)
         {
-            MiniGameSystem.instance.MiniGameExit();
+            MiniGameSystem.Instance.MiniGameExit();
             MiniGameMode = false;
             return;
         }
         
+        // Work 종류 수락
         WorkManager.Instance.MissionStart();
         GameManager.Instance.LastPosition = transform.position;
     }

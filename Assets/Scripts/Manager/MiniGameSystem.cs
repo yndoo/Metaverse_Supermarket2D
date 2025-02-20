@@ -8,13 +8,13 @@ using UnityEngine.SceneManagement;
 
 public class MiniGameSystem : MonoBehaviour
 {
-    public static MiniGameSystem instance;
+    public static MiniGameSystem Instance;
     public GameObject LifeUI;
     public GameObject RewardUI;
     public GameObject MinigameMessageUI;
     public TextMeshProUGUI TimeTxt;
 
-    public bool IsRunning {  get => isRunning; private set { IsRunning = value; } }
+    public bool IsRunning { get; private set; }
 
     private TextMeshProUGUI BestRecordTxt;
     private TextMeshProUGUI TimeResultTxt;
@@ -25,11 +25,10 @@ public class MiniGameSystem : MonoBehaviour
 
     private int index = 2;
     private float curTime = 0f;
-    private bool isRunning = false;
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
     }
     private void Start()
     {
@@ -37,7 +36,7 @@ public class MiniGameSystem : MonoBehaviour
         MinigameMessageUI.SetActive(true);
         Invoke("MsgOff", 3f);
 
-        isRunning = true;
+        IsRunning = true;
         index = LifeCount - 1;
 
         TextMeshProUGUI[] rewards = RewardUI.GetComponentsInChildren<TextMeshProUGUI>(true);
@@ -48,7 +47,7 @@ public class MiniGameSystem : MonoBehaviour
 
     private void Update()
     {
-        if(isRunning)
+        if(IsRunning)
         {
             curTime += Time.deltaTime;
             TimeTxt.text = curTime.ToString("N2");
@@ -60,14 +59,14 @@ public class MiniGameSystem : MonoBehaviour
     /// </summary>
     public void OffLifeUI()
     {
-        if (!isRunning) return;
+        if (!IsRunning) return;
 
         LifeUI.transform.GetChild(index--).gameObject.SetActive(false);
 
         if(index < 0)
         {
             // 게임 끝
-            isRunning = false;
+            IsRunning = false;
             // 기록 계산
             float best = PlayerPrefs.GetFloat(bestRecordKey);
             if(best < curTime)
@@ -112,7 +111,7 @@ public class MiniGameSystem : MonoBehaviour
     }
     public void MiniGameExit()
     {
-        isRunning = false;
+        IsRunning = false;
         SceneManager.LoadScene("MainScene");
     }
 }

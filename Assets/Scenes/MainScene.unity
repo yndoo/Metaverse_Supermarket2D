@@ -14326,7 +14326,7 @@ GameObject:
   - component: {fileID: 879470747}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22157,6 +22157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecaf3499d60c1ab4292f947b05d183c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CustomerEventPrefab: {fileID: 4030635874364413058, guid: a9c9b315cbe142f48acf4aeb155ddf30, type: 3}
 --- !u!1 &1802915972
 GameObject:
   m_ObjectHideFlags: 0
@@ -22695,7 +22696,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1107482057936912680, guid: 7bde651f576e91640ab95b25a6e54438, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4274924731146781133, guid: 7bde651f576e91640ab95b25a6e54438, type: 3}
