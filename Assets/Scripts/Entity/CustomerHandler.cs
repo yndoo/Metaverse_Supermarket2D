@@ -52,6 +52,7 @@ public class CustomerHandler : MonoBehaviour
             case ERequestState.EnterCustomer:
                 // 요청 띄우기 & 생성 & 상태 변경
                 Debug.Log("고객 입장");
+                WorkManager.Instance.NPCWorking = true;
                 FoodNum = customersRandomFood.RandomOn();
                 InitRequestZone();
                 CurState = ERequestState.FindFood;

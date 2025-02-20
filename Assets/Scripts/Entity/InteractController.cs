@@ -53,7 +53,7 @@ public class InteractController : MonoBehaviour
             {
                 case InteractType.BoxMission:
                 case InteractType.MiniGame:
-                    if (!workManager.IsWorking)
+                    if (workManager.IsWorking == false && WorkManager.Instance.NPCWorking == false)
                     {
                         workManager.ShowMissionDesc();
                     }
