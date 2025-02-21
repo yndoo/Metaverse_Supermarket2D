@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
         }
         
         // Work 종류 수락
-        WorkManager.Instance.MissionStart();
         GameManager.Instance.LastPosition = transform.position;
+        WorkManager.Instance.MissionStart();
     }
 }
