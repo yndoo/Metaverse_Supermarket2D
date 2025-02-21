@@ -63,7 +63,7 @@
 ---
 
 ## 🚀 게임 실행하기
-[플레이 링크](https://yndoo.itch.io/metaverse-supermarket2d)
+[플레이 링크](https://play.unity.com/en/games/c82c3f9b-e518-42d5-ade6-f78b31d1a8c8/2d)
 
 ---
 
