@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
         if(MiniGameMode == false)
         {
             GameManager.Instance.LastPosition = transform.position;
+            Debug.Log(GameManager.Instance.LastPosition);
             WorkManager.Instance.MissionStart();
         }
     }
