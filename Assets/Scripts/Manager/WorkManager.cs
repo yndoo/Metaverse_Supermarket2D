@@ -12,6 +12,7 @@ public class WorkManager : MonoBehaviour
     public static WorkManager Instance { get; private set; }
 
     public bool CanGetBoxMission { get; set; } // 박스 미션 받을 수 있는 상태 확인 (박스 미션 미수행 && 상호작용 상태여야 함.)
+    public bool CanGetMiniGameMission { get; set; } // 미니게임 미션 받을 수 있는 상태 확인 (미니게임 미수행 && 상호작용 상태여야 함.)
     public bool IsWorking { get; set; } // 어떤 종류든 일하는 중.
     public bool NPCWorking { get; set; } // NPC 퀘스트 운반 중(다른 일 못하는 상태)
     public bool IsNPCExist { get; set; } // 손님 존재 여부
@@ -65,6 +66,7 @@ public class WorkManager : MonoBehaviour
                 msg = "물품을 진열해야 합니다.\n도전하시겠습니까?";
                 break;
             case InteractType.MiniGame:
+                CanGetMiniGameMission = true;
                 msg = "진상 손님이 찾아왔습니다.";
                 break;
         }
@@ -89,8 +91,13 @@ public class WorkManager : MonoBehaviour
                 break;
             case InteractType.MiniGame:
                 // 미니게임 시작 
-                WorkManager.Instance.IsNPCExist = false; // 미니게임 시 있던 엔피시 사라지기 때문에 처리해줘야 함. 
-                SceneManager.LoadScene("MiniGameScene");
+                if(CanGetMiniGameMission)
+                {
+                    IsNPCExist = false; // 미니게임 시 있던 엔피시 사라지기 때문에 처리해줘야 함. 
+                    CanGetMiniGameMission = false;
+                    IsWorking = true;
+                    SceneManager.LoadScene("MiniGameScene");
+                }
                 break;
             case InteractType.MissionComplete:
                 break;
@@ -108,6 +115,7 @@ public class WorkManager : MonoBehaviour
     public void OffMessageUI()
     {
         CanGetBoxMission = false;
+        CanGetMiniGameMission = false;
         GameMessageUI.SetActive(false);
     }
     #endregion
